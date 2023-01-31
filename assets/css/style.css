@@ -1,0 +1,12 @@
+.wrap {width:90rem; margin:2rem auto;}
+.list {width:100%; overflow: hidden;}
+.list_item {position:relative; padding:2rem 0; border-bottom:1px solid #ddd; transition:transform .3s;}
+.list_item > a {display:block; width:100%;
+	/* touch-action:pan-x; */
+	/* pointer-events: none; */
+	/* user-select: none; */
+	-webkit-user-drag: none;
+}
+.list_item > a > p {font-weight:700; color:#000; line-height:1.6;}
+.list_item > a > span {display: block; color:#555; margin-top:1rem; line-height:1.6;}
+.list_item > .btn_del {position:absolute; right:-7rem; top:0; width:7rem; height:12.745rem; background:tomato; color:#fff; font-size:1.2rem; font-weight:700; color:#fff;}
