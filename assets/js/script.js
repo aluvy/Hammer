@@ -1,77 +1,32 @@
 
 window.addEventListener("load", ()=>{
 
-    var myElement = document.getElementById('myElement');
-
-    // create a simple instance
-    // by default, it only adds horizontal recognizers
-    var mc = new Hammer(myElement);
-
-    // listen to events...
-    mc.on("panleft panright tap press", function(ev) {
-        console.log( ev.type );
-        myElement.textContent = ev.type +" gesture detected.";
-    });
-
-
-
     let list = Array.from(document.querySelectorAll(".list_item"));
     list.forEach((item, idx)=>{
         let mc = new Hammer(item);
-        let x;
+        let btn = item.querySelector(".btn_del").clientWidth * -1;
+        let myx, x;
 
         mc.on("panleft panright tap press", function(ev) {
-            // console.log( ev.type );
 
-            console.log(ev, ev.center.x, ev.deltaX, ev.center.x - ev.deltaX);
+            $(document).find(".list_item").css({"transform" : "translateX(0)" });
 
-            x = ev.deltaX;
-            if( x < -70 ){
-                x = -70;
-            } else if ( x > 0){
-                x = 0
-            }
+            myx = Number((item.style.transform).replace("translateX(", "").replace("px)", ""));
+            x = ev.deltaX + myx;
+
+            x = ( x <= btn ) ? btn : x;     // min
+            x = ( x >= 0 ) ? 0 : x;         // max
+            x = ( ev.type == "tap" && x == btn ) ? 0 : x;   // max, tab
+
             item.style.transform = `translateX(${x}px)`;
-            // item.style.transform = `matrix(1, 0, 0, 1, ${x}px, 0, 0)`;
-
-            if( ev.type == "panleft" ){
-                console.log('left');
-            } else if ( ev.type == "panright" ){
-                console.log('panright');
-            } else if ( ev.type == "tap" ) {
-                console.log('tab');
-
-            }
-            myElement.textContent = ev.type +" gesture detected.";
         });
 
-        // item.addEventListener("mouseup touchend", function(){
-        //     console.log("dd mouseup touchend");
-        // })
-
-        // item.addEventListener("mouseup", function(){
-        //     console.log("mouseup");
-        // })
-
-        // item.addEventListener("touchend", function(){
-        //     console.log("touchend");
-        // })
-
-        $(item).on("mouseup touchend", function(){
-            
-            if ( x < -35 ){
-                x = -70;
-            } else {
-                x = 0;
-            }
-            item.style.transform = `translateX(${x}px)`;
-
-            console.log( $(item).css("transform") );
-            // item.style.transform = `translate3d(${x}px, 0, 0)`;
-        })
-
-        
-
-        // console.log(item, idx)
+        item.addEventListener("mouseup", ()=>{ touchend(item, x, btn) });
+        item.addEventListener("touchend", function(){ touchend(item, x, btn) })
     })
+    
+    const touchend = function(item, x, btn){
+        x = ( x <= btn/2 ) ? btn : 0;
+        item.style.transform = `translateX(${x}px)`;
+    }
 })
