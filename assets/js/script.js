@@ -1,6 +1,10 @@
 
 window.addEventListener("load", ()=>{
 
+    let btnH = Array.from(document.querySelectorAll(".list_item .btn_del"));
+    let liH = document.querySelector(".list_item").offsetHeight;
+    btnH.forEach((item)=>{ item.style.height = `${liH}px` })
+
     let list = Array.from(document.querySelectorAll(".list_item"));
     list.forEach((item, idx)=>{
         let mc = new Hammer(item);

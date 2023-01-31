@@ -1,4 +1,4 @@
-.wrap {width:90rem; margin:2rem auto;}
+.wrap {width:100%; max-width:90rem; margin:2rem auto;}
 .list {width:100%; overflow: hidden;}
 .list_item {position:relative; padding:2rem 0; border-bottom:1px solid #ddd; transition:transform .3s ease-in-out;}
 .list_item > a {display:block; width:100%; -webkit-user-drag: none;
