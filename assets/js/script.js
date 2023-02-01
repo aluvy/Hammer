@@ -11,9 +11,9 @@ window.addEventListener("load", ()=>{
         let btn = item.querySelector(".btn_del").clientWidth * -1;
         let myx, x;
 
-        mc.on("panleft panright tap press", function(ev) {
+        mc.on("panleft panright panup pandown tap press", function(ev) {
 
-            console.log(ev);
+            console.log(ev, ev.type, ev.deltaX, ev.deltaY, 'angle', ev.angle, ev.angle<=-175, 'distance', ev.distance, ev.srcEvent.layerY, ev.srcEvent.offsetY);
 
             // "panleft"
             // "panright"
@@ -21,21 +21,20 @@ window.addEventListener("load", ()=>{
             $(document).find(".list_item").css({"transform" : "translateX(0)" });
 
             myx = Number((item.style.transform).replace("translateX(", "").replace("px)", ""));
-            x = ev.deltaX + myx;
+            // x = ev.deltaX + myx;
+            x = ev.deltaX;
 
-            // x = ( x <= btn ) ? btn : x;     // min
-            // x = ( x >= 0 ) ? 0 : x;         // max
-            // x = ( ev.type == "tap" && x == btn ) ? 0 : x;   // max, tab
+            x = ( x <= btn ) ? btn : x;     // min
+            x = ( x >= 0 ) ? 0 : x;         // max
 
-            if( ev.type == "panleft" ){             // left, min (btn)
-                x = ( x <= btn ) ? btn : x;
-            } else if ( ev.type == "panright" ) {   // right, max (0)
-                x = ( x >= 0 ) ? 0 : x;
-            } else if ( ev.type == "tap" ) {        // tap, 0
-                x = (x == btn) ? 0 : x; 
+            x = ( ev.type == "tap" && x == btn ) ? 0 : x;   // max, tab
+
+            // if( ev.type == "tap" ) { x = (x == btn) ? 0 : x; }
+
+            if(    ( ev.angle >= -180 && ev.angle <= -165  )
+                || ( ev.angle >= 165 && ev.angle <= 180  ) ){
+                item.style.transform = `translateX(${x}px)`;
             }
-
-            item.style.transform = `translateX(${x}px)`;
         });
 
         item.addEventListener("mouseup", ()=>{ touchend(item, x, btn) });
@@ -43,7 +42,7 @@ window.addEventListener("load", ()=>{
     })
     
     const touchend = function(item, x, btn){
-        x = ( x <= btn/2 ) ? btn : 0;
-        item.style.transform = `translateX(${x}px)`;
+        // x = ( x <= btn/2 ) ? btn : 0;
+        // item.style.transform = `translateX(${x}px)`;
     }
 })
