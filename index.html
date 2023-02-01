@@ -13,7 +13,238 @@
     <script src="./assets/js/script.js"></script>
 </head>
 <body>
+
+    <svg width="68" height="106" viewBox="0 0 68 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <mask id="mask">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10C5.52285 10 10 5.52285 10 0H56C62.6274 0 68 5.37258 68 12V94C68 100.627 62.6274 106 56 106H10C10 100.477 5.52285 96 0 96V10Z" fill="#EDF0F6"/>
+            </mask>
+        </defs>
+    </svg>
+
+    <div class="svg_wrap">
+        <div class="svg_item">
+
+        </div>
+
+        <div class="coupon_item">
+            test
+        </div>
+    </div>
+
+<script>
+    $(()=>{
+
+
+        let parentsWidth = $(document).find(".svg_wrap .svg_item").width();
+        let size = getSVGSize(parentsWidth);
+        createSVG(size.width, size.height, size.path, size.x);
+
+
+        $(window).on("resize", ()=>{
+            let parentsWidth = $(document).find(".svg_wrap .svg_item").width();
+            let size = getSVGSize(parentsWidth);
+            createSVG(size.width, size.height, size.path, size.x);
+        })
+
+        
+    })
+
+    let getSVGSize = function(parentsWidth){
+        let width = 320;
+        let height = 106;
+        let path = -230;
+        let x = 0;
+
+        x = width - parentsWidth;
+        path = path + x;
+        width = parentsWidth;
+
+        let size = {
+            'width' : width,
+            'height' : height,
+            'path' : path,
+            'x' : x
+        }
+        return size
+
+    }
+    let createSVG = function(width, height, path, x){
+        width = width == undefined ? 320 : width;
+        height = height == undefined ? 106 : height
+        path = path == undefined ? -230 : path;
+        x = x == undefined ? 0 : x;
+
+        let svg = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="${x} 0 ${width} ${height}" fill="none">
+                <g id="Subtract" filter="url(#coupon_svg_js)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="
+                        M262 0C262 5.5229 257.523 10 252 10 246.477 10 242 5.5229 242 0l
+                        ${path}
+                        0c-6.6274 0-12 5.3726-12 12l0 82c0 6.627 5.3726 12 12 12L242 106C242 100.477 246.477 96 252 96 257.523 96 262 100.477 262 106L308 106C314.627 106 320 100.627 320 94L320 12C320 5.3726 314.627 0 308 0L262 0Z"
+                    fill="white" />
+                </g>
+                <defs>
+                    <filter id="coupon_svg_js" x="${x}" y="0" width="${width}" height="${height}" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        
+                        <feComposite in2="hardAlpha" operator="out"/>
+ 
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow" result="shape"/>
+
+                    </filter>
+                </defs>
+            </svg>
+        `;
+
+        $(document).find(".svg_wrap .svg_item").html(svg);
+    }
+</script>
+
     <div class="wrap">
+        
+
+        
+        <div class="svg_item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="320" height="106" viewBox="0 0 320 106" fill="none">
+                <g id="Subtract" filter="url(#coupon_svg)">
+                    <!-- <path fill-rule="evenodd" clip-rule="evenodd" d="
+                    
+                    M282 13C282
+                    18.5228 277.523 23 272
+                    
+                    23C266.477
+                    23 262 18.5228 262
+                    
+                    13H32C25.3726
+                    13 20 18.3726 
+                    20
+                    
+                    25V107C20
+                    113.627
+                    25.3726 119 32
+                    
+                    119H262C262
+                    113.477 266.477 109 272
+                    
+                    109C277.523
+                    109 282 113.477 282
+                    
+                    
+                    119H328C334.627
+                    119 340 113.627 340
+                    
+                    107V25C340
+                    18.3726 334.627 13 328
+                    
+                    13H282Z" fill="red"/> -->
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="
+                    M262 0C262 5.5229 257.523 10 252 10 246.477 10 242 5.5229 242 0l
+                    
+                    -230
+                    
+                    0c-6.6274 0-12 5.3726-12 12l0 82c0 6.627 5.3726 12 12 12L242 106C242 100.477 246.477 96 252 96 257.523 96 262 100.477 262 106L308 106C314.627 106 320 100.627 320 94L320 12C320 5.3726 314.627 0 308 0L262 0Z" fill="red" />
+                </g>
+                <defs>
+                    <filter id="coupon_svg" x="0" y="0" width="320" height="106" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <!-- shadow -->
+                        <!-- <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="7"/>
+                        <feGaussianBlur stdDeviation="10"/> -->
+                        <!-- // shadow -->
+
+                        <!-- ? -->
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <!-- // ? -->
+
+                        <!-- shadow -->
+                        <!-- <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/> -->
+                        <!-- // shadow -->
+
+                        <!-- ? -->
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1256_28042"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1256_28042" result="shape"/>
+                        <!-- // ? -->
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+
+
+        <div class="svg_item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="320" height="106" viewBox="0 0 320 106" fill="none">
+                <g>
+                    <g id="Subtract" filter="url(#coupon_svg3)"></g>
+                    <path stroke="null" id="svg_2" d="
+                    M262,0c0,5.52285 -4.477,10 -10,10c-5.523,0 -10,-4.47715 -10,-10l-230,0c-6.62742,0 -12,5.37258 -12,12l0,82c0,6.627 5.37259,12 12,12l230,0c0,-5.523 4.477,-10 10,-10c5.523,0 10,4.477 10,10l46,0c6.627,0 12,-5.373 12,-12l0,-82c0,-6.62742 -5.373,-12 -12,-12l-46,0z" clip-rule="evenodd" fill-rule="evenodd" fill="green"/>
+                    </g>
+                </g>
+                <defs>
+                    <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" width="360" height="146" x="-20" y="-13" id="coupon_svg3">
+                        <feGaussianBlur stdDeviation="10"/>
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="svg_item">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="354.844px" height="106px" viewBox="-34.844 0 354.844 106"
+                xml:space="preserve">
+            <g>
+                <path d="
+                M262, 0c0, 5.523 -4.477,10-10,10s-10-4.477-10-10H-22.844c-6.627,0-12,5.373-12,12v82
+                    c0,6.627,5.373,12,12,12H242c0-5.523,4.477-10,10-10s10,4.477,10,10h46c6.627,0,12-5.373,12-12V12c0-6.627-5.373-12-12-12H262z" fill="yellowgreen"/>
+            </g>
+            </svg>
+        </div>
+
+
+
+
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="360" height="146" viewBox="0 0 360 146" fill="none">
+                <g id="Subtract" filter="url(#coupon_svg2)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="
+                    
+                    M282 13C282 18.5228 277.523 23 272 23C266.477 23 262 18.5228 262
+                    
+                    13H32C25.3726 13 20 18.3726 
+                    20 25V107C20 113.627 25.3726 119 32
+                    
+                    119H262C262 113.477 266.477 109 272 109C277.523 109 282 113.477 282
+                    
+                    119H328C334.627 119 340 113.627 340 107V25C340 18.3726 334.627 13 328 13H282Z" fill="white"/>
+                </g>
+                <defs>
+                    <filter id="coupon_svg2" x="0" y="0" width="360" height="146" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <!-- shadow -->
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="7"/>
+                        <feGaussianBlur stdDeviation="10"/>
+                        <!-- // shadow -->
+
+                        <!-- ? -->
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <!-- // ? -->
+
+                        <!-- shadow -->
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
+                        <!-- // shadow -->
+
+                        <!-- ? -->
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1256_28042"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1256_28042" result="shape"/>
+                        <!-- // ? -->
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+
         <ul class="list">
             <li class="list_item">
                 <a href="#">

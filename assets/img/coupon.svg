@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="106" viewBox="0 0 320 106" fill="none">
+    <g id="Subtract" filter="url(#coupon_svg_js)">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M262 0C262 5.5229 257.523 10 252 10 246.477 10 242 5.5229 242 0l -230 0c-6.6274 0-12 5.3726-12 12l0 82c0 6.627 5.3726 12 12 12L242 106C242 100.477 246.477 96 252 96 257.523 96 262 100.477 262 106L308 106C314.627 106 320 100.627 320 94L320 12C320 5.3726 314.627 0 308 0L262 0Z"
+        fill="blue" />
+    </g>
+    <defs>
+        <filter id="coupon_svg_js" x="0" y="0" width="320" height="106" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            
+            <feComposite in2="hardAlpha" operator="out"/>
+
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow" result="shape"/>
+
+        </filter>
+    </defs>
+</svg>

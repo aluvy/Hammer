@@ -10,3 +10,16 @@
 .list_item > a > p {font-weight:700; color:#000; line-height:1.6;}
 .list_item > a > span {display: block; color:#555; margin-top:1rem; line-height:1.6;}
 .list_item > .btn_del {position:absolute; right:-7rem; top:0; width:7rem; height:12.745rem; background:tomato; color:#fff; font-size:1.2rem; font-weight:700; color:#fff;}
+
+
+
+.svg_item svg{ filter:drop-shadow(0 0.7rem 2rem rgba(0,0,0, 0.12));}
+
+.svg_wrap {width:100%; max-width:60rem; margin:2rem auto; background:#f2f2f2; padding:2rem; box-sizing:border-box;}
+.svg_wrap .svg_item {position:relative;}
+.svg_wrap .svg_item::before {content:''; position:absolute; right:0; top:0; width:6.8rem; height:10.6rem; background:url(../img/coupon_right.svg) right top no-repeat; background-size:auto 100%; z-index:2;}
+.svg_wrap .svg_item::after {content:''; position:absolute; right:6.8rem; top:1rem; display:block; width:1px; height:10rem; border-right:1px dashed #ddd;}
+.svg_wrap .svg_item svg {}
+
+
+.svg_wrap .coupon_item{width:100%; height:10.6rem; margin:5rem 0;}
