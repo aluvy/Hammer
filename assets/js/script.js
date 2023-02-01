@@ -26,10 +26,7 @@ window.addEventListener("load", ()=>{
 
             x = ( x <= btn ) ? btn : x;     // min
             x = ( x >= 0 ) ? 0 : x;         // max
-
             x = ( ev.type == "tap" && x == btn ) ? 0 : x;   // max, tab
-
-            // if( ev.type == "tap" ) { x = (x == btn) ? 0 : x; }
 
             if(    ( ev.angle >= -180 && ev.angle <= -165  )
                 || ( ev.angle >= 165 && ev.angle <= 180  ) ){
@@ -37,12 +34,12 @@ window.addEventListener("load", ()=>{
             }
         });
 
-        item.addEventListener("mouseup", ()=>{ touchend(item, x, btn) });
-        item.addEventListener("touchend", function(){ touchend(item, x, btn) })
+        // item.addEventListener("mouseup", ()=>{ touchend(item, x, btn) });
+        // item.addEventListener("touchend", function(){ touchend(item, x, btn) })
     })
     
-    const touchend = function(item, x, btn){
+    // const touchend = function(item, x, btn){
         // x = ( x <= btn/2 ) ? btn : 0;
         // item.style.transform = `translateX(${x}px)`;
-    }
+    // }
 })
