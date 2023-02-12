@@ -1,55 +1,68 @@
 
 window.addEventListener("load", ()=>{
 
+    // set height
     let btnH = Array.from(document.querySelectorAll(".list_item .btn_del"));
     let liH = document.querySelector(".list_item").offsetHeight;
-    btnH.forEach((item)=>{ item.style.height = `${liH}px` })
+    btnH.forEach((item)=>{ item.style.height = `${liH}px` });
 
-    let list = Array.from(document.querySelectorAll(".list_item"));
+    // hammer
+    let AllList = Array.from(document.querySelectorAll(".list_item"))
+    let list = Array.from(document.querySelectorAll(".list_item a"));
+
     list.forEach((item, idx)=>{
         let mc = new Hammer(item);
-        let btn = item.querySelector(".btn_del").clientWidth * -1;
-        let myx, x, angle;
+        let btn = item.parentNode.querySelector(".btn_del");
+        let minX = btn.clientWidth * -1;    // open
+        let maxX = 0;                       // close
 
-        mc.on("panleft panright panup pandown tap press", function(ev) {
+        let type, x, angle;
 
-            console.log(ev, ev.type, ev.deltaX, ev.deltaY, 'angle', ev.angle, ev.angle<=-175, 'distance', ev.distance, ev.srcEvent.layerY, ev.srcEvent.offsetY);
+        item.addEventListener("click", function(e){
+            e.preventDefault();
+        })
 
-            if( ev.type == "panleft" || ev.type == "panright" || ev.type == "tap" ){
-                $(item).siblings("li").css({"transform" : "translateX(0)" });
+        mc.get("pan").set({ direction: Hammer.DIRECTION_ALL });
+
+        mc.on("panstart panend panleft panright", function(e) {
+
+            let siblings = AllList.filter(node => node != item.parentNode);
+            siblings.forEach((Allitem, idx) =>{
+                Allitem.style.transform = `translateX(0)`;
+                Allitem.classList.remove("on");
+            })
+
+            let li = item.parentNode;
+
+            type = e.type;
+            x = e.deltaX;
+            angle = e.angle;
+            
+            if( type == "panleft" ){
+                x = ( li.classList.contains("on") )
+                    ? minX
+                    : (x <= minX ) ? minX : x;
             }
-            // "panleft"
-            // "panright"
 
-            // $(document).find(".list_item").css({"transform" : "translateX(0)" });
+            x = ( x >= maxX ) ? maxX : x;
+            x = ( x <= minX ) ? minX : x;
 
-            // myx = Number((item.style.transform).replace("translateX(", "").replace("px)", ""));
-            // x = ev.deltaX + myx;
-            x = ev.deltaX;
-            angle = ev.angle;
-
-            x = ( x <= btn ) ? btn : x;     // min (btn)
-            x = ( x >= 0 ) ? 0 : x;         // max (0)
-            x = ( ev.type == "tap" && x == btn ) ? 0 : x;   // max, tab
-
-            if(    ( ev.angle >= -180 && ev.angle <= -165  )
-                || ( ev.angle >= 165 && ev.angle <= 180  )
-                || ( ev.angle >= -20 && ev.angle <= 20  ) ){
-                item.style.transform = `translateX(${x}px)`;
+            if(    ( angle >= -180 && angle <= -165  )
+                || ( angle >= 165 && angle <= 180  )
+                || ( angle >= -20 && angle <= 20  ) ){
+                    li.style.transform = `translateX(${x}px)`;
             }
 
-            if ( ev.changedPointers[0].type == "pointerup" ) {
-                x = ( x >= btn/2 ) ? 0 : btn;
-                $(item).css({"transform" : `translateX(${x}px)` });
+            if ( type == "panend" ) {
+                x = ( x >= minX/2 ) ? maxX : minX;
+                li.style.transform = `translateX(${x}px)`;
+                ( x == minX ) ? li.classList.add("on") : li.classList.remove("on");
             }
         });
 
-        // item.addEventListener("mouseup", ()=>{ touchend(item, x, btn) });
-        // item.addEventListener("touchend", function(){ touchend(item, x, btn) })
+        mc.on("tap", function(e) {
+            AllList.forEach((Allitem, idx)=>{ Allitem.style.transform = `translateX(${maxX})`; })
+        })
+
     })
-    
-    // const touchend = function(item, x, btn){
-        // x = ( x <= btn/2 ) ? btn : 0;
-        // item.style.transform = `translateX(${x}px)`;
-    // }
 })
