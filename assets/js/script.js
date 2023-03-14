@@ -78,12 +78,15 @@ $(()=>{
         let type = e.type;
         let btmsht = $(document).find(".bottom-sheet");
         let body = $(document).find(".bottom-sheet .body");
+        let scroll = body.scrollTop();
 
         console.log(body.scrollTop());
 
         if( type == "panup" ){
             btmsht.addClass("on");
-        } else if ( type == "pandown" ){
+        }
+        
+        if ( type == "pandown" && scroll <= 0 ){
             btmsht.removeClass("on");
         }
     })

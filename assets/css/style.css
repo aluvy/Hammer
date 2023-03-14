@@ -19,4 +19,4 @@
 .bottom-sheet .body {flex:0 0 calc(100% - 3rem); overflow-y:scroll; background:yellow;}
 .bottom-sheet .list {padding:1rem; box-sizing:border-box;}
 .bottom-sheet .list li + li {margin-top:2rem;}
-.bottom-sheet .list li a {display:block; border:2px solid gray; padding:2.5rem 1rem;}
+.bottom-sheet .list li a {display:block; border:2px solid gray; padding:2.5rem 1rem; user-select: none; -webkit-user-select: none; -webkit-user-drag: none;}
