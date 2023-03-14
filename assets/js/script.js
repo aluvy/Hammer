@@ -22,9 +22,9 @@ window.addEventListener("load", ()=>{
             e.preventDefault();
         })
 
-        mc.get("pan").set({ direction: Hammer.DIRECTION_ALL });
+        mc.get("pan").set({ direction: Hammer.DIRECTION_HORIZONTAL });
 
-        mc.on("panstart panend panleft panright", function(e) {
+        mc.on("panleft panright", function(e) {
 
             let siblings = AllList.filter(node => node != item.parentNode);
             siblings.forEach((Allitem, idx) =>{
@@ -73,14 +73,14 @@ $(()=>{
     let mc = new Hammer(btm);
 
     mc.get("pan").set({ direction: Hammer.DIRECTION_VERTICAL });
-    mc.on("panup pandown panstart panend", function(e) {
+    mc.on("panup pandown", function(e) {
         console.log(e);
         let type = e.type;
         let btmsht = $(document).find(".bottom-sheet");
         let body = $(document).find(".bottom-sheet .body");
         let scroll = body.scrollTop();
 
-        console.log(body.scrollTop());
+        // console.log(body.scrollTop());
 
         if( type == "panup" ){
             btmsht.addClass("on");
