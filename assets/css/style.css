@@ -16,7 +16,7 @@
 .bottom-sheet {position:fixed; left:0; bottom:calc(-100% + 22rem); display:flex; flex-direction:column; justify-content:flex-start; width:100%; height:calc(100% - 6rem); background:#fff; border-radius:1rem 1rem 0 0; box-shadow:0 0 7rem rgba(0,0,0, 0.15); overflow:hidden; transition:bottom .3s}
 .bottom-sheet.on {bottom:0;}
 .bottom-sheet .head {flex:0 0 3rem; background:gray;}
-.bottom-sheet .body {flex:0 0 calc(100% - 3rem); overflow-y:scroll; background:yellow;}
+.bottom-sheet .body {flex:0 0 calc(100% - 3rem); overflow-y:scroll; overscroll-behavior:none; background:yellow;}
 .bottom-sheet .list {padding:1rem; box-sizing:border-box;}
 .bottom-sheet .list li + li {margin-top:2rem;}
 .bottom-sheet .list li a {display:block; border:2px solid gray; padding:2.5rem 1rem; user-select: none; -webkit-user-select: none; -webkit-user-drag: none;}
