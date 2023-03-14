@@ -12,3 +12,11 @@
 .list_item > a > p {font-weight:700; color:#000; line-height:1.6;}
 .list_item > a > span {display: block; color:#555; margin-top:1rem; line-height:1.6;}
 .list_item > .btn_del {position:absolute; right:-7rem; top:0; width:7rem; height:12.745rem; background:tomato; color:#fff; font-size:1.2rem; font-weight:700; color:#fff;}
+
+.bottom-sheet {position:fixed; left:0; bottom:calc(-100% + 22rem); display:flex; flex-direction:column; justify-content:flex-start; width:100%; height:calc(100% - 6rem); background:#fff; border-radius:1rem 1rem 0 0; box-shadow:0 0 7rem rgba(0,0,0, 0.15); overflow:hidden; transition:bottom .3s}
+.bottom-sheet.on {bottom:0;}
+.bottom-sheet .head {flex:0 0 3rem; background:gray;}
+.bottom-sheet .body {flex:0 0 calc(100% - 3rem); overflow-y:scroll; background:yellow;}
+.bottom-sheet .list {padding:1rem; box-sizing:border-box;}
+.bottom-sheet .list li + li {margin-top:2rem;}
+.bottom-sheet .list li a {display:block; border:2px solid gray; padding:2.5rem 1rem;}

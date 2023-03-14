@@ -66,3 +66,25 @@ window.addEventListener("load", ()=>{
 
     })
 })
+
+$(()=>{
+
+    let btm = document.querySelector(".bottom-sheet");
+    let mc = new Hammer(btm);
+
+    mc.get("pan").set({ direction: Hammer.DIRECTION_VERTICAL });
+    mc.on("panup pandown panstart panend", function(e) {
+        console.log(e);
+        let type = e.type;
+        let btmsht = $(document).find(".bottom-sheet");
+        let body = $(document).find(".bottom-sheet .body");
+
+        console.log(body.scrollTop());
+
+        if( type == "panup" ){
+            btmsht.addClass("on");
+        } else if ( type == "pandown" ){
+            btmsht.removeClass("on");
+        }
+    })
+})
